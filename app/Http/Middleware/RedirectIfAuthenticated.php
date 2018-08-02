@@ -19,6 +19,8 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
+        }else{
+            return redirect()->action('AdminController@login')->with('flash_message_error','請登入系統');
         }
 
         return $next($request);
