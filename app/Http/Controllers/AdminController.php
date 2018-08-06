@@ -34,6 +34,13 @@ class AdminController extends Controller
         return view('admin.settings');
     }
 
+    public function updatePassword(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            echo "<pre>";print_r($data);die;
+        }
+    }
+
     public function logout(){
         Session::flush();
         return redirect('admin')->with('flash_message_success','成功登出系統');

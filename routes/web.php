@@ -22,6 +22,24 @@ Route::get('/logout','AdminController@logout');
 Route::group(['middleware'=>['auth']],function(){
     Route::get('/admin/dashboard','AdminController@dashboard');
     Route::get('/admin/settings','AdminController@settings');
+    Route::match(['get','post'],'/admin/update_pwd','AdminController@updatePassword');
+
+    // 最新消息
+    Route::get('/admin/news','NewsController@views');    
+    Route::delete('/admin/news/{id}','NewsController@delete');
+    
+    // 活動資訊
+    Route::get('/admin/event','EventController@views');
+
+    // 線上課程
+    Route::get('/admin/youtube','YoutubeController@views');
+
+    // 報名系統
+    Route::get('/admin/news','NewsController@views');
+
+
+
+    
 });
 
 Auth::routes();
