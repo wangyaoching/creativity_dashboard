@@ -1,3 +1,3 @@
 <footer class="footer text-center">
-                All Rights Reserved by CCU
+            2018 © Startup Land at National Chung Cheng University. All Rights Reserved
 </footer>

@@ -22,6 +22,7 @@ class CreateEventTable extends Migration
             $table->string('position', 20);
             $table->datetime('begin_date');
             $table->date('end_date');
+            $table->boolean('visibled')->default(false);          
             $table->integer('quota');
             $table->softDeletes();
         });

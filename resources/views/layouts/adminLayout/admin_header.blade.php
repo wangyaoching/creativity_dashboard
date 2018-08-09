@@ -18,7 +18,7 @@
                          <!-- Logo text -->
                         <span class="logo-text">
                              <!-- dark Logo text -->
-                             <img src="../../resources/assets/images/logo.png" alt="homepage" class="light-logo" />                            
+                             <img src="{{asset('assets/images/logo.png')}}" alt="homepage" class="light-logo" />                            
                         </span>
                         <!-- Logo icon -->
                         <!-- <b class="logo-icon"> -->
@@ -138,10 +138,10 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../resources/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('assets/images/users/1.jpg')}}" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{url('/admin/settings')}}"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                <!-- <a class="dropdown-item" href="{{url('/admin/settings')}}"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a> -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{url('/logout')}}"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                                 <div class="dropdown-divider"></div>

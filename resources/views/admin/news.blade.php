@@ -7,7 +7,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">最新消息</h4>
+                        <h4 class="page-title">消息系統</h4>
                     </div>
                 </div>
             </div>
@@ -18,8 +18,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="col-12">
-                                    <h5 class="card-title">檢視最新消息 
-                                        <a href="javascript:void(0)">
+                                    <h5 class="card-title">檢視公告消息
+                                        <a href="{{url('admin/news_insert')}}">
                                             <div class="col-lg-1 bg-success p-10 text-white text-center float-right">
                                                 <i class="fa fa-plus m-b-5 font-16"></i>
                                                     <h5 class="m-b-0 m-t-5">新增</h5>                                                
@@ -35,10 +35,11 @@
                                         <thead>
                                             <tr>
                                                 <th>標題</th>
-                                                <th>副標題</th>
-                                                <th>類別</th>
-                                                <th>舉辦時間</th>
-                                                <th>舉辦地點</th>
+                                                <th>消息來源</th>
+                                                <th>消息網址</th>
+                                                <th>發佈時間</th>
+                                                <th>顯示</th>
+                                                <th>消息內容</th>
                                                 <th>功能</th>
                                             </tr>
                                         </thead>
@@ -46,10 +47,16 @@
                                             @foreach($news as $data)
                                             <tr>
                                                 <td>{{$data->title}}</td>
-                                                <td>{{$data->id}}</td>
-                                                <td>{{$data->news_category}}</td>
+                                                <td>{{$data->source}}</td>
+                                                <td>{{$data->source_url}}</td>                                                 
                                                 <td>{{$data->created_at}}</td>
-                                                <td>{{$data->position}}</td>
+                                                <td>@if($data->visibled == 0)
+										                否
+                                                    @else($data->visibled == 1)
+                                                        是                                                    
+                                                    @endif
+                                                </td>
+                                                <td>{{$data->content}}</td>
                                     <td>
 
                                       
@@ -85,9 +92,8 @@
                                             </tr>
                                         </tfoot>
                                     </table>
-                                    {{$news->links()}}
                                 </div>
-
+                                {{ $news->links() }}   
                             </div>
                         </div>
                     </div>

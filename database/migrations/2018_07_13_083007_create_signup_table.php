@@ -19,7 +19,6 @@ class CreateSignUpTable extends Migration
             $table->string('name', 20);
             $table->integer('student_id');
             $table->string('department', 20);
-
             $table->timestamps();
             $table->softDeletes();
         });

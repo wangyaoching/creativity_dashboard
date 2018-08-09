@@ -24,7 +24,6 @@ class CreateNewsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
-
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

@@ -7,14 +7,14 @@
              <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">後台管理系統</h4>                     
+                        <h4 class="page-title">線上課程</h4>                     
                                  
                     </div>               
                        
                     
                     <div class="card-body">
                         <div class="col-12">
-                            <a href="javascript:void(0)">
+                            <a href="{{url('admin/youtube_insert')}}">
                                 <div class="col-lg-1 bg-success p-10 text-white text-center float-right">
                                     <i class="fa fa-plus m-b-5 font-16"></i>
                                         <h5 class="m-b-0 m-t-5">新增</h5>
@@ -37,102 +37,35 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row el-element-overlay">
-                    <div class="col-lg-3 col-md-6">
-                    
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="https://img.youtube.com/vi/UTIbFb4CTc8/0.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                        <iframe  src="https://www.youtube.com/embed/UTIbFb4CTc8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                        </ul>
+                    @foreach($youtube as $data)
+                        <div class="col-lg-3 col-md-6">                    
+                            <div class="card">
+                                <div class="el-card-item">        
+                                    <div class="el-card-avatar el-overlay-1"> <img src="https://img.youtube.com/vi/{{$data->url}}/0.jpg" alt="user" />
+                                        <div class="el-overlay">
+                                            <ul class="list-style-none el-info">
+                                            <iframe  src="https://www.youtube.com/embed/{{$data->url}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
+                                    <div class="el-card-content">
+                                        
+                                        <h4 class="m-b-0">Project title</h4> <h5 class="text-muted">{{$data->id}}</h5> 
+                                        <!-- 刪除 -->
+                                        <form action="{{url('/admin/youtube',$data->id)}}"
+										method="post" style="display: inline;">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button class="btn btn-danger btn-sm" onclick="clickDel(event)">刪除</button>
+                                        </form>      
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                    <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="https://img.youtube.com/vi/YkLyTXJYwgI/0.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                        <iframe src="https://www.youtube.com/embed/FuDdstaZXdw?list=RDFuDdstaZXdw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                    <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="https://img.youtube.com/vi/YkLyTXJYwgI/0.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                        <iframe  src="https://www.youtube.com/embed/FuDdstaZXdw?list=RDFuDdstaZXdw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="https://img.youtube.com/vi/YkLyTXJYwgI/0.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                        <iframe  src="https://www.youtube.com/embed/FuDdstaZXdw?list=RDFuDdstaZXdw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1"> <img src="https://img.youtube.com/vi/YkLyTXJYwgI/0.jpg" alt="user" />
-                                    <div class="el-overlay">
-                                        <ul class="list-style-none el-info">
-                                        <iframe  src="https://www.youtube.com/embed/FuDdstaZXdw?list=RDFuDdstaZXdw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="el-card-content">
-                                    <h4 class="m-b-0">Project title</h4> <span class="text-muted">subtitle of project</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
+                    @endforeach        
                 </div>
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
+                {{ $youtube->links() }}    
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
 </div>
         
 @endsection

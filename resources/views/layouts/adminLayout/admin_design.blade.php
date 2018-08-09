@@ -9,15 +9,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../resources/assets/images/graylogo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/graylogo.png')}}">
     <title>創新創業基地 後台</title>
     <!-- Custom CSS -->
-    <link href="../../resources/assets/libs/flot/css/float-chart.css" rel="stylesheet">
-    <link href="../css/backend_css/style.min.css" rel="stylesheet">
+    <link href="{{asset('assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
+    <link href="{{asset('css/backend_css/style.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/libs/jquery-steps/jquery.steps.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/libs/jquery-steps/steps.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/jquery-minicolors/jquery.minicolors.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/select2/dist/css/select2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quill/dist/quill.snow.css')}}">    
 
-    <!-- NEW -->
-    <link href="../../resources/assets/libs/jquery-steps/jquery.steps.css" rel="stylesheet">
-    <link href="resources/assets/libs/jquery-steps/steps.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,33 +61,17 @@
         @include('layouts.adminLayout.admin_footer')
     </div>
 
-    <!-- <script src="../../resources/assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../resources/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../../resources/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../../resources/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="../../resources/assets/extra-libs/sparkline/sparkline.js"></script>
-    <script src="../js/backend_js/waves.js"></script>
-    <script src="../js/backend_js/sidebarmenu.js"></script>
-    <script src="../js/backend_js/custom.min.js"></script>
-    <script src="../../resources/assets/libs/flot/excanvas.js"></script>
-    <script src="../../resources/assets/libs/flot/jquery.flot.js"></script>
-    <script src="../../resources/assets/libs/flot/jquery.flot.pie.js"></script>
-    <script src="../../resources/assets/libs/flot/jquery.flot.time.js"></script>
-    <script src="../../resources/assets/libs/flot/jquery.flot.stack.js"></script>
-    <script src="../../resources/assets/libs/flot/jquery.flot.crosshair.js"></script>
-    <script src="../../resources/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="../js/backend_js/pages/chart/chart-page-init.js"></script> -->
 
-    <script src="../../resources/assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../../resources/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../../resources/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../../resources/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="../../resources/assets/extra-libs/sparkline/sparkline.js"></script>
-    <script src="../js/backend_js/waves.js"></script>
-    <script src="../js/backend_js/sidebarmenu.js"></script>
-    <script src="../js/backend_js/custom.min.js"></script>
-    <script src="../../resources/assets/libs/jquery-steps/build/jquery.steps.min.js"></script>
-    <script src="../../resources/assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
+    <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js')}}"></script>
+    <script src="{{asset('assets/extra-libs/sparkline/sparkline.js')}}"></script>
+    <script src="{{asset('js/backend_js/waves.js')}}"></script>
+    <script src="{{asset('js/backend_js/sidebarmenu.js')}}"></script>
+    <script src="{{asset('js/backend_js/custom.min.js')}}"></script>
+    <script src="{{asset('assets/libs/jquery-steps/build/jquery.steps.min.js')}}"></script>
+    <script src="{{asset('assets/libs/jquery-validation/dist/jquery.validate.min.js')}}"></script>
 
     <script>
     var form = $("#example-form");
@@ -112,12 +99,58 @@
             alert("Submitted!");
         }
     });
-
-
     </script>
 
+    <!-- insert.blade -->
+    <script src="{{asset('assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
+            <script src="{{asset('js/backend_js/pages/mask/mask.init.js')}}"></script>
+            <script src="{{asset('assets/libs/select2/dist/js/select2.full.min.js')}}"></script>
+            <script src="{{asset('assets/libs/select2/dist/js/select2.min.js')}}"></script>
+            <script src="{{asset('assets/libs/jquery-asColor/dist/jquery-asColor.min.js')}}"></script>
+            <script src="{{asset('assets/libs/jquery-asGradient/dist/jquery-asGradient.js')}}"></script>
+            <script src="{{asset('assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js')}}"></script>
+            <script src="{{asset('assets/libs/jquery-minicolors/jquery.minicolors.min.js')}}"></script>
+            <script src="{{asset('assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+            <script src="{{asset('assets/libs/quill/dist/quill.min.js')}}"></script>
+            <script>
+                //***********************************//
+                // For select 2
+                //***********************************//
+                $(".select2").select2();
 
+                /*colorpicker*/
+                $('.demo').each(function() {
+                
+                $(this).minicolors({
+                        control: $(this).attr('data-control') || 'hue',
+                        position: $(this).attr('data-position') || 'bottom left',
 
+                        change: function(value, opacity) {
+                            if (!value) return;
+                            if (opacity) value += ', ' + opacity;
+                            if (typeof console === 'object') {
+                                console.log(value);
+                            }
+                        },
+                        theme: 'bootstrap'
+                    });
+
+                });
+                /*datwpicker*/
+                jQuery('.mydatepicker').datepicker();
+                jQuery('#datepicker-autoclose').datepicker({
+                    format:"yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true
+                });
+
+                var quill = new Quill('#editor', {
+                    theme: 'snow'
+                });                     
+    
+    
+            </script>   
+               
 
 </body>
 
