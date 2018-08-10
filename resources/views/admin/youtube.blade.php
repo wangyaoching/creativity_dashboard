@@ -50,14 +50,24 @@
                                     </div>
                                     <div class="el-card-content">
                                         
-                                        <h4 class="m-b-0">Project title</h4> <h5 class="text-muted">{{$data->id}}</h5> 
+                                        <h4 class="m-b-0">{{$data->title}}</h4> <h5 class="text-muted">{{$data->teacher}}</h5> 
                                         <!-- 刪除 -->
                                         <form action="{{url('/admin/youtube',$data->id)}}"
 										method="post" style="display: inline;">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
                                             <button class="btn btn-danger btn-sm" onclick="clickDel(event)">刪除</button>
-                                        </form>      
+                                        </form> 
+                                        <!-- 顯示      -->
+                                        <form action="{{url('/admin/visibled',$data->id)}}"
+										method="post" style="display: inline;">
+                                            {{ csrf_field() }}
+                                            @if ($data->visibled ==0)
+                                            <button class="btn btn-cyan btn-sm" onclick="clickDel(event)">不顯示</button>
+                                            @else
+                                            <button class="btn btn-cyan btn-sm" onclick="clickDel(event)">顯示</button>
+                                            @endif
+                                        </form>
                                     </div>
                                 </div>
                             </div>

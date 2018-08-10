@@ -12,7 +12,7 @@
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/youtube')}}" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">線上課程</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">相關檔案</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/file')}}" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">相關檔案</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">活動系統</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{url('admin/event')}}" class="sidebar-link"><i class="mdi mdi-pencil"></i><span class="hide-menu"> 活動資訊 </span></a></li>

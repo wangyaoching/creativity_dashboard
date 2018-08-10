@@ -20,6 +20,16 @@ class YoutubeController extends Controller
         $youtube->delete();
         return redirect('admin/youtube');
     }
+    public function visibled($id){
+        $youtube = Youtube::find($id);       
+        if ($youtube->visibled ==0)
+        {$youtube->visibled=1;}
+        else
+        {$youtube->visibled=0;}      
+        $youtube->update();
+        return redirect('admin/youtube');
+    }
+
     public function insert(){                
         return view('admin/youtube_insert');
     }
@@ -48,7 +58,7 @@ class YoutubeController extends Controller
         
         // youtube 網址取值
         $s = $request->input('url');
-        $r = substr(strrchr($s, 'v='),2);        
+        $r = substr(strrchr($s, "?v="),3);
         if (strstr($r,'&')){
             $finally= strstr($r, '&', true);
         }else{
@@ -60,6 +70,7 @@ class YoutubeController extends Controller
         $youtube->teacher = $request->input('teacher');
         $youtube->url = $finally;
         $youtube->created_at = $request->input('created_at');
+        $youtube->visibled = $request->input('visibled');
         $youtube->save();                  
         return redirect('admin/youtube');
     }

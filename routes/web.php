@@ -44,10 +44,19 @@ Route::group(['middleware'=>['auth']],function(){
     Route::delete('/admin/youtube/{id}','YoutubeController@delete');     
     Route::get('/admin/youtube_insert','YoutubeController@insert'); 
     Route::post('/admin/youtube','YoutubeController@store');
+    Route::post('/admin/visibled/{id}','YoutubeController@visibled');
+
+    // 相關檔案
+    Route::get('/admin/file','FileController@views');    
+    Route::delete('/admin/file/{id}','FileController@delete');
+    Route::get('/admin/file_insert','FileController@insert'); 
+
 
 
     // 報名系統
     Route::get('/admin/news','NewsController@views');
+
+
     
 });
 

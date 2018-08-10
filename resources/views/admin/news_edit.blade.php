@@ -86,7 +86,8 @@
                                 </div>
                                 
                                 <div class="form-group m-t-20">
-                                    <label>是否顯示</label>                   
+                                    <label>是否顯示</label>
+                                    @if($visibled == 0)
                                     <div class="custom-control custom-radio">
                                         <input type="radio" class="custom-control-input" id="customControlValidation1" name="visibled" required value="1">
                                         <label class="custom-control-label" for="customControlValidation1">是</label>
@@ -94,7 +95,17 @@
                                         <div class="custom-control custom-radio">
                                         <input type="radio" class="custom-control-input" id="customControlValidation2" name="visibled" required value="0" checked="true">
                                         <label class="custom-control-label" for="customControlValidation2">否</label>
-                                    </div>  
+                                    </div>
+                                    @else
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="customControlValidation1" name="visibled" required value="1" checked="true">
+                                        <label class="custom-control-label" for="customControlValidation1">是</label>
+                                    </div>
+                                        <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="customControlValidation2" name="visibled" required value="0">
+                                        <label class="custom-control-label" for="customControlValidation2">否</label>
+                                    </div>
+                                    @endif 
                                 </div>
 
                             </div>

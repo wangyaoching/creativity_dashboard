@@ -69,7 +69,7 @@
                      <!-- Column -->
                      <div class="col-md-6 ">
                         <div class="card card-hover">
-                            <a href="{{url('admin/youtube')}}">
+                            <a href="{{url('admin/file')}}">
                                 <div class="box bg-info text-center">
                                     <h1 class="font-light text-white"><i class="mdi mdi-arrow-all"></i></h1>
                                     <h6 class="text-white">相關檔案</h6>

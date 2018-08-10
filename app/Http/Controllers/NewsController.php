@@ -55,8 +55,9 @@ class NewsController extends Controller
         $news->content = $request->input('content');   
         $news->source = $request->input('source');  
         $news->created_at = $request->input('created_at');  
-        $news->user_id = 1;
+        $news->source_url = $request->input('source_url');
         $news->visibled = $request->input('visibled');
+        $news->user_id = 1;
         $news->news_category =1;
         $news->save();    
         return redirect('admin/news');
