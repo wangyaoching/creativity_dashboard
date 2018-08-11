@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\File;
 use DB;
 use Validator;
+use Auth;
 
 class FileController extends Controller
 {
@@ -41,15 +42,61 @@ class FileController extends Controller
         if($validator->fails()){           
             return redirect('admin/file_insert')->withErrors($validator)->withInput();
         }        
-
+        // 檔案移動到file資料夾
+        try{
+            $destinationPath = public_path()."/file/";
+            $filename = $request->file->getclientoriginalname();
+            $filetype=$request->file->getMimeType();
+            // if($filetype!='application/pdf'){
+            //     return "檔案格式錯誤";
+            // }
+            //$unique_name = md5($filename. time()).'.pdf';
+            $request->file('file')->move($destinationPath,$filename);            
+        }
+        catch (\Exception $e){
+            return "發生錯誤";
+        }    
+        // END檔案移動到file資料夾
         $file = new File;
-        $news->title = $request->input('title');
-        $news->created_at = $request->input('created_at');  
-        $news->visibled = $request->input('visibled');
-        $news->user_id = 1;
-        $news->save();   
+        $file->path = $filename;
+        $file->title = $request->input('title');
+        $file->created_at = $request->input('created_at');  
+        $file->visibled = $request->input('visibled');        
+        $file->user_id = Auth::user()->id;
+        $file->save();   
         return redirect('admin/file');
     }
+
+    public function edit($id)
+    {
+        $file = File::find($id);
+        return view('admin/file_edit',$file);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $file = file::find($id);
+        $rules=[
+            'title'=>'required|max:50',
+            'created_at'=>'required',
+            'visibled'=>'required',
+        ];
+
+        $message=[
+            'required'=>'必須填寫:attribute欄位',
+            'max'=>':attribute欄位的輸入長度不能大於:max',
+        ];         
+        $validator=Validator::make($request->all(),$rules,$message);
+
+        if($validator->fails()){           
+            return redirect('admin/file_edit')->withErrors($validator)->withInput();
+        }        
+
+        $file->update($request->all());
+        return redirect('admin/file');
+    }
+
+
 
 
 }

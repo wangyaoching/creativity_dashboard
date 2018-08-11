@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\News;
 use DB;
 use Validator;
+use Auth;
 
 
 class NewsController extends Controller
@@ -57,7 +58,7 @@ class NewsController extends Controller
         $news->created_at = $request->input('created_at');  
         $news->source_url = $request->input('source_url');
         $news->visibled = $request->input('visibled');
-        $news->user_id = 1;
+        $news->user_id = Auth::user()->id;
         $news->news_category =1;
         $news->save();    
         return redirect('admin/news');

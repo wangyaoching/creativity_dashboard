@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Youtube;
 use Validator;
 use DB;
-
+use Auth;
 
 class YoutubeController extends Controller
 {
@@ -71,6 +71,7 @@ class YoutubeController extends Controller
         $youtube->url = $finally;
         $youtube->created_at = $request->input('created_at');
         $youtube->visibled = $request->input('visibled');
+        //$youtube->user_id =Auth::user()->id;
         $youtube->save();                  
         return redirect('admin/youtube');
     }

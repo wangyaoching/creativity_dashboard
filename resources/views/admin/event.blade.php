@@ -18,11 +18,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="col-12">
-                                    <h5 class="card-title">檢視所有活動 
+                                    <h5 class="card-title">檢視活動資訊 
                                         <a href="javascript:void(0)">
                                             <div class="col-lg-1 bg-success p-10 text-white text-center float-right">
                                                 <i class="fa fa-plus m-b-5 font-16"></i>
-                                                <h5 class="m-b-0 m-t-5">新增</h5>                                                
+                                                <h5 class="m-b-0 m-t-5">新增</h5>                                        
                                             </div>
                                         </a>
                                     </h5>
@@ -45,28 +45,22 @@
                                             @foreach($event as $data)
                                             <tr>
                                                 <td>{{$data->title}}</td>
-                                                <td>{{$data->id}}</td>
+                                                <td>{{$data->subtitle}}</td>
                                                 <td>{{$data->news_category}}</td>
                                                 <td>{{$data->created_at}}</td>
                                                 <td>{{$data->position}}</td>
                                                 <td>
-
-
-
-                                                        <!-- 修改  -->
-                                                    <form action="{{url('foreign_stu',$data->id)}}"
-                                                        method="post" style="display: inline;">
+                                                    <!-- 修改  -->
+                                                    <a href="{{url('/admin/event',$data->id)}}">
+                                                        <button type="button" class="btn btn-cyan btn-sm" onclick="clickDel(event)">修改</button>
+                                                    </a>
+                                                    <!-- 刪除 -->
+                                                    <form action="{{url('/admin/news',$event->id)}}" method="post" style="display: inline;">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
-                                                        <button type="button" class="btn btn-cyan btn-sm"
-                                                                onclick="clickDel(event)">修改</button>
-                                                    </form>
-                                                    <!-- 刪除 -->
-                                                    <a href="{{url('foreign_stu',$data->id)}}">
-                                                        <button type="button" class="btn btn-danger btn-sm">刪除</button>
-                                                    </a>
+                                                        <button class="btn btn-danger btn-sm" onclick="clickDel(event)">刪除</button>
+                                                    </form>        
                                                 </td>
-                                            </tr>
                                             </tr>
 
                                             @endforeach

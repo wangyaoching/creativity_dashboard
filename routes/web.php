@@ -32,12 +32,17 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/admin/news/{id}','NewsController@edit');	
     Route::patch('/admin/news/{id}','NewsController@update');
 
-
     // 校內消息
     Route::get('/admin/news2','NewsController@views2');
 
     // 活動資訊
-    Route::get('/admin/event','EventController@views');
+    Route::get('/admin/event','EventController@views');    
+    Route::delete('/admin/event/{id}','EventController@delete');
+    Route::get('/admin/event_insert','EventController@insert'); 
+    Route::post('/admin/event','EventController@store');
+    Route::get('/admin/event/{id}','EventController@edit');	
+    Route::patch('/admin/event/{id}','EventController@update');
+
 
     // 線上課程
     Route::get('/admin/youtube','YoutubeController@views');
@@ -50,8 +55,9 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/admin/file','FileController@views');    
     Route::delete('/admin/file/{id}','FileController@delete');
     Route::get('/admin/file_insert','FileController@insert'); 
-
-
+    Route::post('/admin/file','FileController@store');
+    Route::get('/admin/file/{id}','FileController@edit');	
+    Route::patch('/admin/file/{id}','FileController@update');
 
     // 報名系統
     Route::get('/admin/news','NewsController@views');

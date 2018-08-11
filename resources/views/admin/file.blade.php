@@ -35,6 +35,7 @@
                                         <thead>
                                             <tr>
                                                 <th>標題</th>
+                                                <th>檔名</th>
                                                 <th>發佈時間</th>
                                                 <th>顯示</th>
                                                 <th>功能</th>
@@ -44,6 +45,7 @@
                                             @foreach($file as $data)
                                             <tr>
                                                 <td>{{$data->title}}</td>
+                                                <td>{{$data->path}}</td>
                                                 <td>{{$data->created_at}}</td>      
                                                 <td>@if($data->visibled == 0)
 										                否
