@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use DB;
+use Validator;
+use Auth;
+use Image;
+use Input;
 
 class EventController extends Controller
 {
@@ -18,16 +23,20 @@ class EventController extends Controller
     }
 
     public function insert(){                
-        return view('admin/news_insert');
+        return view('admin/event_insert');
     }
 
     public function store(Request $request)
     {
         $rules=[
             'title'=>'required|max:50',
+            'subtitle'=>'required|max:50',
             'source'=>'required|max:50',
-            'source_url'=>'required|max:50',
-            'created_at'=>'required',
+            'position'=>'required|max:50',
+            'quota'=>'required',
+            'image'=>'required',
+            'begin_date'=>'required',
+            'end_date'=>'required',
             'content'=>'required|max:500',
         ];
 
@@ -37,37 +46,55 @@ class EventController extends Controller
         ];         
         $validator=Validator::make($request->all(),$rules,$message);
 
-        if($validator->fails()){           
-            return redirect('admin/news_insert')->withErrors($validator)->withInput();
-        }        
+        if($request->begin_date > $request->end_date){
+            $validator->errors()->add('end_date','開始時間必須在結束時間前');
+            return redirect('admin/event_insert')->withErrors($validator)->withInput();
+        }
 
-        $news = new News;
-        $news->title = $request->input('title');
-        $news->content = $request->input('content');   
-        $news->source = $request->input('source');  
-        $news->created_at = $request->input('created_at');  
-        $news->source_url = $request->input('source_url');
-        $news->visibled = $request->input('visibled');
-        $news->user_id = Auth::user()->id;
-        $news->news_category =1;
-        $news->save();    
-        return redirect('admin/news');
+        if($validator->fails()){           
+            return redirect('admin/event_insert')->withErrors($validator)->withInput();
+        }
+
+        // 檔案移動到eventimg資料夾
+        try{
+            $destinationPath = public_path()."/eventimg/";
+            $filename = $request->image->getclientoriginalname();
+            $filetype=$request->image->getMimeType();        
+            if($filetype!='image/jpeg'&&$filetype!='image/jpg'&&$filetype!='image/png'){
+                return redirect('admin/event_insert')->withErrors(array('image' => '檔案格式錯誤須為jpg或jpeg'))->withInput();
+            }
+            $file = $request->file('image');        
+            $img = Image::make($file);
+            $img->save(public_path('eventimg/'.$request->title.'.jpg'));
+            $img->resize(320, 180)->save(public_path('eventimg/縮圖/'.$request->title.'.jpg'));
+            
+            // END檔案移動到eventimg資料夾
+            
+            Event::create($request->all());
+            return redirect('admin/event');
+        }
+        catch (\Exception $e){
+            return redirect('admin/file_insert')->withErrors(array('image' => '發生錯誤'))->withInput();
+        }  
     }
 
     public function edit($id)
     {
-        $news = News::find($id);
-        return view('admin/news_edit',$news);
+        $event = Event::find($id);
+        return view('admin/event_edit',$event);
     }
 
     public function update(Request $request, $id)
     {
-        $news = News::find($id);
+        $event = Event::find($id);
         $rules=[
             'title'=>'required|max:50',
+            'subtitle'=>'required|max:50',
             'source'=>'required|max:50',
-            'source_url'=>'required|max:50',
-            'created_at'=>'required',
+            'position'=>'required|max:50',
+            'quota'=>'required',
+            'begin_date'=>'required',
+            'end_date'=>'required',
             'content'=>'required|max:500',
         ];
 
@@ -78,10 +105,11 @@ class EventController extends Controller
         $validator=Validator::make($request->all(),$rules,$message);
 
         if($validator->fails()){           
-            return redirect('admin/news_edit')->withErrors($validator)->withInput();
-        }        
+            return redirect("admin/event/$id")->withErrors($validator)->withInput();
+        }     
 
-        $news->update($request->all());
-        return redirect('admin/news');
+
+        $event->update($request->all());
+        return redirect('admin/event');
     }
 }

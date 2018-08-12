@@ -143,6 +143,11 @@
                     autoclose: true,
                     todayHighlight: true
                 });
+                jQuery('#datepicker-autoclose1').datepicker({
+                    format:"yyyy-mm-dd",
+                    autoclose: true,
+                    todayHighlight: true
+                });
 
                 var quill = new Quill('#editor', {
                     theme: 'snow'

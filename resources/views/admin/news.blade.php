@@ -18,7 +18,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="col-12">
-                                    <h5 class="card-title">檢視公告消息
+                                    <h5 class="card-title">{{$new_category}}
                                         <a href="{{url('admin/news_insert')}}">
                                             <div class="col-lg-1 bg-success p-10 text-white text-center float-right">
                                                 <i class="fa fa-plus m-b-5 font-16"></i>
@@ -110,5 +110,6 @@
                 <!-- ============================================================== -->
             </div>
 </div>
+
 
 @endsection

@@ -60,7 +60,9 @@ Route::group(['middleware'=>['auth']],function(){
     Route::patch('/admin/file/{id}','FileController@update');
 
     // 報名系統
-    Route::get('/admin/news','NewsController@views');
+    Route::get('/admin/sign_up','Sign_upController@views');
+    Route::delete('/admin/sign_up/{id}','Sign_upController@delete');
+
 
 
     

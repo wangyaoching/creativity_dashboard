@@ -47,14 +47,11 @@ class FileController extends Controller
             $destinationPath = public_path()."/file/";
             $filename = $request->file->getclientoriginalname();
             $filetype=$request->file->getMimeType();
-            // if($filetype!='application/pdf'){
-            //     return "檔案格式錯誤";
-            // }
             //$unique_name = md5($filename. time()).'.pdf';
             $request->file('file')->move($destinationPath,$filename);            
         }
         catch (\Exception $e){
-            return "發生錯誤";
+            return redirect('admin/file_insert')->withErrors(array('file' => '發生錯誤'))->withInput();
         }    
         // END檔案移動到file資料夾
         $file = new File;

@@ -13,12 +13,14 @@ class NewsController extends Controller
 {
     public function views(){
         $news = News::where('news_category', '=', 1)->orderBy('id','desc')->paginate(15);
-        return view ('admin/news',['news'=>$news]);
+        $new_category = '檢視公告消息';
+        return view ('admin/news',['news'=>$news,'new_category'=>$new_category]);
     }
 
     public function views2(){
         $news = News::where('news_category', '=', 2)->orderBy('id','desc')->paginate(15);
-        return view ('admin/news',['news'=>$news]);
+        $new_category = '檢視校內消息';
+        return view ('admin/news',['news'=>$news,'new_category'=>$new_category]);
     }
 
     public function delete($id){
@@ -88,7 +90,7 @@ class NewsController extends Controller
         $validator=Validator::make($request->all(),$rules,$message);
 
         if($validator->fails()){           
-            return redirect('admin/news_edit')->withErrors($validator)->withInput();
+            return redirect("admin/news/$id")->withErrors($validator)->withInput();
         }        
 
         $news->update($request->all());
