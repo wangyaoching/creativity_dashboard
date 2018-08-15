@@ -64,6 +64,12 @@ Route::group(['middleware'=>['auth']],function(){
     Route::delete('/admin/sign_up/{id}','Sign_upController@delete');
     Route::get('/admin/sign_up_insert/{id}','Sign_upController@insert');
     Route::patch('/admin/sign_up/{id}','Sign_upController@store');
+
+    // 寄信系統
+    Route::get('/admin/news_mail/{id}','MailController@newsmail');
+    Route::get('/admin/event_mail/{id}','MailController@eventmail');
+    Route::get('/admin/youtube_mail/{id}','MailController@youtubemail');
+
     
 });
 

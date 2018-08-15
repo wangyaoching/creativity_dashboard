@@ -18,16 +18,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="col-12">
-                                    <h5 class="card-title">檢視活動資訊 
+                                    <h5 class="card-title">檢視活動資訊
                                         <a href="{{url('admin/event_insert')}}">
                                             <div class="col-lg-1 bg-success p-10 text-white text-center float-right">
                                                 <i class="fa fa-plus m-b-5 font-16"></i>
-                                                <h5 class="m-b-0 m-t-5">新增</h5>                                        
+                                                <h5 class="m-b-0 m-t-5">新增</h5>
                                             </div>
                                         </a>
                                     </h5>
                                 </div>
-                            </div>                               
+                            </div>
 
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-bordered">
@@ -48,7 +48,7 @@
                                         <tbody>
                                             @foreach($event as $data)
                                             <tr>
-                                            <td>{{$data->title}}</td>                                            
+                                                <td>{{$data->title}}</td>
                                                 <td>{{$data->subtitle}}</td>
                                                 <td>{{$data->source}}</td>
                                                 <td>{{$data->quota}}</td>
@@ -57,11 +57,11 @@
                                                 <td>{{$data->signup_end_date}}</td>
                                                 <td>{{$data->position}}</td>
                                                 <td>@if($data->visibled == 0)
-										                否
+                                                        否
                                                     @else($data->visibled == 1)
-                                                        是                                                    
+                                                        是
                                                     @endif
-                                                </td>                                                
+                                                </td>
                                                 <td>
                                                     <!-- 修改  -->
                                                     <a href="{{url('/admin/event',$data->id)}}">
@@ -72,10 +72,10 @@
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
                                                         <button class="btn btn-danger btn-sm" onclick="clickDel(event)">刪除</button>
-                                                    </form> 
+                                                    </form>
                                                     <!-- 圖片 -->
-                                                    <input type="submit" name="submit" value="圖片" class="btn btn-cyan btn-sm" data-toggle="modal" data-target="#{{$data->id}}" /></td>
-
+                                                    <input type="submit" name="submit" value="圖片" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{$data->id}}" /></td>
+                                                    
                                                 </td>
                                             </tr>
 
@@ -87,9 +87,13 @@
                                             <tr>
                                                 <th>標題</th>
                                                 <th>副標題</th>
-                                                <th>類別</th>
-                                                <th>舉辦時間</th>
+                                                <th>舉辦單位</th>
+                                                <th>人數限制</th>
+                                                <th>開始時間</th>
+                                                <th>結束時間</th>
+                                                <th>報名結束</th>
                                                 <th>舉辦地點</th>
+                                                <th>顯示</th>
                                                 <th>功能</th>
                                             </tr>
                                         </tfoot>
@@ -124,7 +128,7 @@
                     </button>
                 </div>
                 <div class="modal-body" style="text-align: center;">
-                    
+
                     <p class="h1"><br>標題:{{$data->title}}</p>
                     <div class="img-container">
                     @if (file_exists("eventimg/縮圖/$data->image"))
@@ -136,8 +140,14 @@
                     <p class="h3">活動內容:{{$data->content}}</p>
                     
 
+
                 </div>
                 <div class="modal-footer">
+                    <!-- 通知 -->
+                    <a href="{{url('/admin/event_mail',$data->id)}}">
+                                                    <button type="button" class="btn btn-info btn-sm"
+                                                        onclick="clickDel(event)">通知</button>
+                                                    </a>
                     <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Close</button>
                 </div>
             </div>

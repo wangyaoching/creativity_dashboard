@@ -22,13 +22,13 @@
                                         <a href="{{url('admin/news_insert')}}">
                                             <div class="col-lg-1 bg-success p-10 text-white text-center float-right">
                                                 <i class="fa fa-plus m-b-5 font-16"></i>
-                                                    <h5 class="m-b-0 m-t-5">新增</h5>                                                
+                                                    <h5 class="m-b-0 m-t-5">新增</h5>
                                             </div>
                                         </a>
                                     </h5>
                                 </div>
                             </div>
-                               
+
 
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-bordered">
@@ -48,21 +48,21 @@
                                             <tr>
                                                 <td>{{$data->title}}</td>
                                                 <td>{{$data->source}}</td>
-                                                <td>{{$data->source_url}}</td>                                                 
+                                                <td>{{$data->source_url}}</td>
                                                 <td>{{$data->created_at}}</td>
                                                 <td>@if($data->visibled == 0)
 										                否
                                                     @else($data->visibled == 1)
-                                                        是                                                    
+                                                        是
                                                     @endif
                                                 </td>
                                                 <td>{{$data->content}}</td>
                                     <td>
 
-                                      
+
                                         <!-- 修改  -->
                                         <a href="{{url('/admin/news',$data->id)}}">
-                                        
+
                                             <button type="button" class="btn btn-cyan btn-sm"
                                                 onclick="clickDel(event)">修改</button>
                                         </a>
@@ -72,7 +72,14 @@
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
                                             <button class="btn btn-danger btn-sm" onclick="clickDel(event)">刪除</button>
-									    </form>        
+                                        </form>
+
+                                         <!-- 通知 -->
+                                        <a href="{{url('/admin/news_mail',$data->id)}}">
+                                        <button type="button" class="btn btn-info btn-sm"
+                                            onclick="clickDel(event)">通知</button>
+                                        </a>
+
                                     </td>
                                             </tr>
                                             </tr>
@@ -84,16 +91,17 @@
                                         <tfoot>
                                             <tr>
                                                 <th>標題</th>
-                                                <th>副標題</th>
-                                                <th>類別</th>
-                                                <th>舉辦時間</th>
-                                                <th>舉辦地點</th>
+                                                <th>消息來源</th>
+                                                <th>消息網址</th>
+                                                <th>發佈時間</th>
+                                                <th>顯示</th>
+                                                <th>消息內容</th>
                                                 <th>功能</th>
                                             </tr>
                                         </tfoot>
                                     </table>
                                 </div>
-                                {{ $news->links() }}   
+                                {{ $news->links() }}
                             </div>
                         </div>
                     </div>

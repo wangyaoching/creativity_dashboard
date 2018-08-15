@@ -68,6 +68,11 @@
                                             <button class="btn btn-cyan btn-sm" onclick="clickDel(event)">顯示</button>
                                             @endif
                                         </form>
+                                        <!-- 通知 -->
+                                        <a href="{{url('/admin/youtube_mail',$data->id)}}">                                        
+                                        <button type="button" class="btn btn-info btn-sm"
+                                            onclick="clickDel(event)">通知</button>
+                                            </a>
                                     </div>
                                 </div>
                             </div>
