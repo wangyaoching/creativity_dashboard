@@ -62,9 +62,8 @@ Route::group(['middleware'=>['auth']],function(){
     // 報名系統
     Route::get('/admin/sign_up','Sign_upController@views');
     Route::delete('/admin/sign_up/{id}','Sign_upController@delete');
-
-
-
+    Route::get('/admin/sign_up_insert/{id}','Sign_upController@insert');
+    Route::patch('/admin/sign_up/{id}','Sign_upController@store');
     
 });
 

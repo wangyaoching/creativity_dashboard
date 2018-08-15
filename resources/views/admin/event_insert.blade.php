@@ -39,14 +39,39 @@
                                     @endif                                  
                                     <input type="text" class="form-control " name="subtitle" placeholder="輸入副標題" value="{{old('subtitle')}}">
                                 </div>
+                                 
+                                
+                                <div class ="form-group m-t-20">
+                                    <button type="button" class="btn btn-lg btn-block btn-outline-info" id="switchimg">切換上傳方式</button>
+                                </div>
 
-                                 <div class="form-group m-t-20">                                
-                                    <label>選擇圖片 </label> 
-                                    @if($errors->has('image'))
-                                    <p class="text-danger">{{$errors->first('image')}}</p>
-                                    @endif                                  
-                                    <input type="file" class="form-control " name="image" id="file"><br>
-                                </div>  
+                                <label>選擇圖片 </label> 
+                                @if($errors->has('file'))
+                                    <p class="text-danger">{{$errors->first('file')}}</p>
+                                @endif
+
+                                <div class="form-group m-t-20" id="file" style="display:none">   
+                                    <input type="file" class="form-control " name="file" id="file"><br>
+                                </div> 
+
+                                <div class="form-group m-t-20" id = "select" >  
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="selectimg1" name="file" value="newsimg01.jpg">
+                                        <label class="custom-control-label" for="selectimg1"><img src="{{asset("eventimg/縮圖/newsimg01.jpg")}}" /></label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="selectimg2" name="file" value="newsimg02.jpg">
+                                        <label class="custom-control-label" for="selectimg2"><img src="{{asset("eventimg/縮圖/newsimg02.jpg")}}" /></label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="selectimg3" name="file" value="newsimg03.jpg">
+                                        <label class="custom-control-label" for="selectimg3"><img src="{{asset("eventimg/縮圖/newsimg03.jpg")}}" /></label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="selectimg4" name="file" value="newsimg04.jpg">
+                                        <label class="custom-control-label" for="selectimg4"><img src="{{asset("eventimg/縮圖/newsimg04.jpg")}}" /></label>
+                                    </div>
+                                </div> 
 
                                 <div class="form-group m-t-20">
                                     <label>舉辦單位 </label>
@@ -62,7 +87,9 @@
                                     <p class="text-danger">{{$errors->first('position')}}</p>
                                     @endif
                                     <input type="text" class="form-control " name="position" placeholder="輸入活動地點" value="{{old('position')}}">
-                                </div>                
+                                </div> 
+                                
+                                
 
                                 <label>活動開始日期</label>
                                 @if($errors->has('begin_date'))
@@ -81,6 +108,17 @@
                                 @endif
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="datepicker-autoclose1" name ="end_date" placeholder="yyyy-mm-dd" value="{{old('end_date')}}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+
+                                <label>報名結束日期</label>
+                                @if($errors->has('signup_end_date'))
+                                <p class="text-danger">{{$errors->first('signup_end_date')}}</p>
+                                @endif
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="datepicker-autoclose2" name ="signup_end_date" placeholder="yyyy-mm-dd" value="{{old('signup_end_date')}}">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
@@ -125,18 +163,10 @@
                     </div>
                    
                 </div>
+
                
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
             </div>
+
             
 </div>
 

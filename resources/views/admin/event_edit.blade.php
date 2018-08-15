@@ -79,6 +79,17 @@
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
+
+                                <label>報名結束日期</label>
+                                @if($errors->has('signup_end_date'))
+                                <p class="text-danger">{{$errors->first('signup_end_date')}}</p>
+                                @endif
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="datepicker-autoclose2" name ="signup_end_date" placeholder="yyyy-mm-dd" value="{{$end_date}}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
                                 
                                 <div class="form-group m-t-20">                                    
                                     <label>消息內容 </label>

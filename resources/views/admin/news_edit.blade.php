@@ -33,20 +33,6 @@
                                     @endif                                  
                                     <input type="text" class="form-control " name="title" placeholder="輸入標題" value="{{$title}}">
                                 </div>
-
-                                                              
-                                <!-- <div class="form-group m-t-20">
-                                    <label>消息分類</label
-                                    @if($errors->has('news_category'))
-                                    <p class="text-danger">{{$errors->first('news_category')}}</p>
-                                    @endif  >                  
-                                    <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name = 'news_category'>
-                                        <option value="">點此選擇</option>                                            
-                                        <option value="1">校內消息</option>
-                                        <option value="2">公布消息</option>     
-                                    </select>  
-                                </div>
-                                 -->
                                
                                 <div class="form-group m-t-20">
                                     <label>消息來源 </label>

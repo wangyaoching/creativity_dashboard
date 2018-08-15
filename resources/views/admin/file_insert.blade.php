@@ -37,9 +37,9 @@
                                     @if($errors->has('file'))
                                     <p class="text-danger">{{$errors->first('file')}}</p>
                                     @endif                                  
-                                    <input type="file" class="form-control " name="file" id="file"><br>
-                                </div>               
-                                
+                                    <input type="file" class="form-control " name="file" id="file"><br>        
+                                </div> 
+                                      
                                 <label>發佈日期</label>
                                 @if($errors->has('created_at'))
                                 <p class="text-danger">{{$errors->first('created_at')}}</p>

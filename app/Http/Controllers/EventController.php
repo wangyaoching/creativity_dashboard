@@ -34,7 +34,7 @@ class EventController extends Controller
             'source'=>'required|max:50',
             'position'=>'required|max:50',
             'quota'=>'required',
-            'image'=>'required',
+            'file'=>'required',
             'begin_date'=>'required',
             'end_date'=>'required',
             'content'=>'required|max:500',
@@ -51,31 +51,74 @@ class EventController extends Controller
             return redirect('admin/event_insert')->withErrors($validator)->withInput();
         }
 
-        if($validator->fails()){           
+        if($validator->fails()){             
             return redirect('admin/event_insert')->withErrors($validator)->withInput();
         }
 
+        
+        // var_dump(gettype($request->image));
+        // exit();
+
         // 檔案移動到eventimg資料夾
-        try{
-            $destinationPath = public_path()."/eventimg/";
-            $filename = $request->image->getclientoriginalname();
-            $filetype=$request->image->getMimeType();        
-            if($filetype!='image/jpeg'&&$filetype!='image/jpg'&&$filetype!='image/png'){
-                return redirect('admin/event_insert')->withErrors(array('image' => '檔案格式錯誤須為jpg或jpeg'))->withInput();
+        if (is_object($request->file)){ 
+            try {
+                $destinationPath = public_path()."/eventimg/";
+                $filename = $request->file->getclientoriginalname();
+                $filetype=$request->file->getMimeType();
+                if ($filetype!='image/jpeg'&&$filetype!='image/jpg'&&$filetype!='image/png') {
+                    return redirect('admin/event_insert')->withErrors(array('file' => '檔案格式錯誤須為jpg或jpeg'))->withInput();
+                }
+
+                $file = $request->file('file');
+                $img = Image::make($file);                
+                $img->save(public_path('eventimg/'.$filename));
+                $img->resize(320, 180)->save(public_path('eventimg/縮圖/'.$filename));
             }
-            $file = $request->file('image');        
-            $img = Image::make($file);
-            $img->save(public_path('eventimg/'.$request->title.'.jpg'));
-            $img->resize(320, 180)->save(public_path('eventimg/縮圖/'.$request->title.'.jpg'));
-            
-            // END檔案移動到eventimg資料夾
-            
-            Event::create($request->all());
+            catch (\Exception $e){
+                return redirect('admin/file_insert')->withErrors(array('image' => '發生錯誤'))->withInput();
+            }
+                // END檔案移動到eventimg資料夾
+                $event = new Event;
+                $event->title = $request->input('title');
+                $event->subtitle = $request->input('subtitle');
+                $event->content = $request->input('content');   
+                $event->source = $request->input('source');
+                $event->position = $request->input('position');
+
+                $event->signup_end_date = $request->input('signup_end_date');  
+                $event->begin_date = $request->input('begin_date');  
+                $event->end_date = $request->input('end_date');  
+                $event->quota = $request->input('quota');                  
+                $event->visibled = $request->input('visibled');
+
+                $event->image =$filename;
+                $event->save();  
+                return redirect('admin/event');
+
+        }
+        else{
+            $event = new Event;
+            $event->title = $request->input('title');
+            $event->subtitle = $request->input('subtitle');
+            $event->content = $request->input('content');   
+            $event->source = $request->input('source');
+            $event->position = $request->input('position');
+
+            $event->signup_end_date = $request->input('signup_end_date');  
+            $event->begin_date = $request->input('begin_date');  
+            $event->end_date = $request->input('end_date');  
+            $event->quota = $request->input('quota');                  
+            $event->visibled = $request->input('visibled');
+
+            $event->image =$request->input('file');
+            $event->save();  
             return redirect('admin/event');
         }
-        catch (\Exception $e){
-            return redirect('admin/file_insert')->withErrors(array('image' => '發生錯誤'))->withInput();
-        }  
+            
+        
+        
+        
+         
     }
 
     public function edit($id)
@@ -107,7 +150,6 @@ class EventController extends Controller
         if($validator->fails()){           
             return redirect("admin/event/$id")->withErrors($validator)->withInput();
         }     
-
 
         $event->update($request->all());
         return redirect('admin/event');

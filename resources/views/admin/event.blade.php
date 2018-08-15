@@ -7,7 +7,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">活動資訊</h4>
+                        <h4 class="page-title">活動系統</h4>
                     </div>
                 </div>
             </div>
@@ -39,9 +39,9 @@
                                                 <th>人數限制</th>
                                                 <th>開始時間</th>
                                                 <th>結束時間</th>
+                                                <th>報名結束</th>
                                                 <th>舉辦地點</th>
                                                 <th>顯示</th>
-                                                <th>活動內容</th>
                                                 <th>功能</th>
                                             </tr>
                                         </thead>
@@ -54,14 +54,14 @@
                                                 <td>{{$data->quota}}</td>
                                                 <td>{{$data->begin_date}}</td>
                                                 <td>{{$data->end_date}}</td>
+                                                <td>{{$data->signup_end_date}}</td>
                                                 <td>{{$data->position}}</td>
                                                 <td>@if($data->visibled == 0)
 										                否
                                                     @else($data->visibled == 1)
                                                         是                                                    
                                                     @endif
-                                                </td>
-                                                <td>{{$data->content}}</td>
+                                                </td>                                                
                                                 <td>
                                                     <!-- 修改  -->
                                                     <a href="{{url('/admin/event',$data->id)}}">
@@ -74,7 +74,7 @@
                                                         <button class="btn btn-danger btn-sm" onclick="clickDel(event)">刪除</button>
                                                     </form> 
                                                     <!-- 圖片 -->
-                                                    <input type="submit" name="submit" value="圖片" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#{{$data->id}}" /></td>
+                                                    <input type="submit" name="submit" value="圖片" class="btn btn-cyan btn-sm" data-toggle="modal" data-target="#{{$data->id}}" /></td>
 
                                                 </td>
                                             </tr>
@@ -125,14 +125,16 @@
                 </div>
                 <div class="modal-body" style="text-align: center;">
                     
-                    <p class="h3"><br>標題:{{$data->title}}</p>
+                    <p class="h1"><br>標題:{{$data->title}}</p>
                     <div class="img-container">
-                    @if (file_exists("eventimg/縮圖/$data->title.jpg"))
-                        <img src="{{asset("eventimg/縮圖/$data->title.jpg")}}" />
+                    @if (file_exists("eventimg/縮圖/$data->image"))
+                        <img src="{{asset("eventimg/縮圖/$data->image")}}" />
                     @else
                         <p class="h5"><br>未找到圖檔</p>
                     @endif
-                    </div>           
+                    </div>
+                    <p class="h3">活動內容:{{$data->content}}</p>
+                    
 
                 </div>
                 <div class="modal-footer">

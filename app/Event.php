@@ -11,6 +11,7 @@ class Event extends Model
     protected $table ='event';
     protected $fillable=['id','title','subtitle','content',
                         'source','position','begin_date','visibled',
+                        'signup_end_date','image',
                         'end_date','quota'];
     public $timestamps=false;
     protected $dates = ['deleted_at'];

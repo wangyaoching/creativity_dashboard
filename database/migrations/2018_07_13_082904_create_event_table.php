@@ -19,10 +19,14 @@ class CreateEventTable extends Migration
             $table->string('subtitle', 50);
             $table->longText('content');
             $table->string('source', 20); //各處室來源
+
             $table->string('position', 20);
-            $table->datetime('begin_date');
+            $table->string('image', 200);
+            $table->date('signup_end_date');
+            $table->date('begin_date');
             $table->date('end_date');
-            $table->boolean('visibled')->default(false);          
+            $table->boolean('visibled')->default(false);       
+               
             $table->integer('quota');
             $table->softDeletes();
         });
